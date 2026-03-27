@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro Aluno 🎀</title>
+    <title>Login 🎀</title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
     <style>
-        /* Substituindo o fundo padrão pelo fundo fofo */
+        /* O mesmo fundo fofo de bolinhas */
         body {
             font-family: 'Nunito', sans-serif;
             background-color: #ffe6ea;
@@ -24,7 +24,7 @@
             padding: 20px;
         }
 
-        /* Container centralizado estilo Hello Kitty */
+        /* Container centralizado */
         .hello-kitty-container {
             background-color: #ffffff;
             border: 4px solid #ff99cc;
@@ -32,10 +32,9 @@
             box-shadow: 0 10px 20px rgba(255, 153, 204, 0.4);
             padding: 40px;
             width: 100%;
-            max-width: 500px;
+            max-width: 400px; /* Um pouco menor para o login ficar mais charmoso */
         }
 
-        /* Estilizando o título */
         h1 {
             text-align: center;
             color: #ff4d94;
@@ -45,7 +44,6 @@
             text-shadow: 2px 2px 0px #ffe6ea;
         }
 
-        /* Customizando as Labels do Bootstrap */
         .form-label {
             font-weight: 700;
             color: #ff66a3;
@@ -53,7 +51,6 @@
             margin-bottom: 5px;
         }
 
-        /* Customizando os Inputs do Bootstrap */
         .form-control {
             border: 2px dashed #ffb3c6;
             border-radius: 15px;
@@ -64,7 +61,6 @@
             transition: all 0.3s ease;
         }
 
-        /* Efeito ao clicar no input (Focus) */
         .form-control:focus {
             border-color: #ff4d94;
             border-style: solid;
@@ -76,8 +72,7 @@
             color: #d1b3c4;
         }
 
-        /* Customizando o Botão */
-        .btn-salvar {
+        .btn-entrar {
             width: 100%;
             background-color: #ff66a3;
             color: white;
@@ -86,53 +81,69 @@
             border-radius: 20px;
             font-size: 1.2em;
             font-weight: 700;
-            margin-top: 10px;
+            margin-top: 15px;
             box-shadow: 0 5px 15px rgba(255, 102, 163, 0.4);
             transition: all 0.3s ease;
         }
 
-        .btn-salvar:hover {
+        .btn-entrar:hover {
             background-color: #ff4d94;
             color: white;
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(255, 102, 163, 0.6);
         }
 
-        .btn-salvar:active {
+        .btn-entrar:active {
             transform: translateY(1px);
+        }
+
+        /* Estilo para os links extras do formulário */
+        .links-extras {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .links-extras a {
+            color: #ff66a3;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9em;
+            transition: color 0.3s ease;
+        }
+
+        .links-extras a:hover {
+            color: #ff4d94;
+            text-decoration: underline dashed;
         }
     </style>
 </head>
 <body>
 
     <div class="hello-kitty-container">
-        <h1>🎀 Cadastro Aluno 🌸</h1>
+        <h1>🎀 Login 🌸</h1>
 
-        <form method="post" action="/aluno/cadastro">
+        <div data-th-if="${erro != null}" class="alert alert-danger text-center" style="border-radius: 15px; background-color: #ffccd5; color: #ff4d94; border: 2px dashed #ff4d94;">
+            <strong data-th-text="${erro}"></strong> 😿
+        </div>
+
+        <form method="post" action="/login">
             
             <div class="mb-3">
-                <label for="nome" class="form-label">Nome:</label>
-                <input id="nome" name="nome" type="text" class="form-control" placeholder="ex: Pedro a Rocha" required>
-            </div>
-
-            <div class="mb-3">
-                <label for="cpf" class="form-label">CPF:</label>
-                <input id="cpf" name="cpf" type="text" class="form-control" placeholder="000.000.000-00" required>
-            </div>
-
-            <div class="mb-3">
                 <label for="email" class="form-label">Email:</label>
-                <input id="email" name="email" type="email" class="form-control" placeholder="ex: pedro@pedromail.com" required>
+                <input id="email" name="email" type="email" class="form-control" placeholder="Seu email cadastrado" required>
             </div>
 
-            <div class="mb-4">
+            <div class="mb-3">
                 <label for="senha" class="form-label">Senha:</label>
-                <input id="senha" name="senha" type="password" class="form-control" placeholder="ex: @#Senha_Forte556" required>
+                <input id="senha" name="senha" type="password" class="form-control" placeholder="Sua senha secreta" required>
             </div>
 
-            <button type="submit" class="btn-salvar">Salvar ✨</button>
+            <button type="submit" class="btn-entrar">Entrar ✨</button>
 
         </form>
+
+        <div class="links-extras">
+        <a href="/aluno/cadastro">Ainda não tem conta? Cadastre-se 💖</a>        </div>
     </div>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

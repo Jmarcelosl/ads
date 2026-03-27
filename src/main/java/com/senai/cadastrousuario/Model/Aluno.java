@@ -1,4 +1,4 @@
-package com.senai.ads.Model;
+package com.senai.cadastrousuario.Model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,10 +12,11 @@ public class Aluno {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String nome;
+    private String cpf;
     private String email;
     private String senha;
 
-    public Aluno(int id, String nome, String email, String senha) {
+    public Aluno(int id, String nome, String cpf, String email, String senha) {
         this.id = id;
         this.nome = nome;
         this.email = email;
@@ -56,6 +57,14 @@ public class Aluno {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
 }

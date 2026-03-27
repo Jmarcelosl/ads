@@ -1,13 +1,13 @@
-package com.senai.ads;
+package com.senai.cadastrousuario;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class AdsApplication {
+public class CadastrousuarioApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(AdsApplication.class, args);
+		SpringApplication.run(CadastrousuarioApplication.class, args);
 	}
 
 }
