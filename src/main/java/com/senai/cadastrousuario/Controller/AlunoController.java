@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.senai.cadastrousuario.Dao.AlunoDao;
 import com.senai.cadastrousuario.Model.Aluno;
@@ -25,10 +27,14 @@ public class AlunoController {
     }
 
     @PostMapping("/aluno/cadastro")
-    public String novoAluno(Aluno aluno) {
+    public String novoAluno(Aluno aluno, RedirectAttributes attributes) {
         dao.save(aluno);
-        // Após salvar, redireciona o usuário para a tela de login
-        return "redirect:/aluno/login";
+
+        // Mensagem fofa de sucesso
+        attributes.addFlashAttribute("mensagemSucesso", "Aluno cadastrado com sucesso! 🌸✨");
+
+        // Redireciona de volta para a própria tela de cadastro
+        return "redirect:/aluno/cadastro";
     }
 
     @GetMapping("/aluno/lista")
@@ -59,5 +65,18 @@ public class AlunoController {
             model.addAttribute("erro", "Email ou senha incorretos!");
             return "login";
         }
+    }
+
+    // Botão de excluir Aluno
+    @GetMapping("/aluno/excluir/{id}")
+    public String excluirAluno(@PathVariable int id, RedirectAttributes attributes) {
+        // Manda o DAO apagar o aluno que tem esse ID
+        dao.deleteById(id);
+
+        // Cria uma mensagem fofa de sucesso
+        attributes.addFlashAttribute("mensagemSucesso", "Aluno excluído com sucesso! 🎀");
+
+        // Recarrega a página de lista de alunos
+        return "redirect:/aluno/lista";
     }
 }

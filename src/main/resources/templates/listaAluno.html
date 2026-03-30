@@ -7,11 +7,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
-        /* Estilo do fundo da página */
         body {
             font-family: 'Nunito', sans-serif;
-            background-color: #ffe6ea; /* Fundo rosa pastel */
-            background-image: radial-gradient(#ffb3c6 2px, transparent 2px); /* Efeito de bolinhas */
+            background-color: #ffe6ea;
+            background-image: radial-gradient(#ffb3c6 2px, transparent 2px);
             background-size: 30px 30px;
             color: #5a5a5a;
             display: flex;
@@ -22,39 +21,35 @@
             padding: 20px;
         }
 
-        /* Caixa branca que segura a tabela */
         .hello-kitty-container {
             background-color: #ffffff;
-            border: 4px solid #ff99cc; /* Borda rosa forte */
-            border-radius: 25px; /* Cantos bem arredondados */
-            box-shadow: 0 10px 20px rgba(255, 153, 204, 0.4); /* Sombra suave rosa */
+            border: 4px solid #ff99cc;
+            border-radius: 25px;
+            box-shadow: 0 10px 20px rgba(255, 153, 204, 0.4);
             padding: 40px;
             width: 100%;
-            max-width: 700px;
+            max-width: 800px; /* Deixei um pouco mais largo para caber o botão */
         }
 
-        /* Título */
         h1 {
             text-align: center;
-            color: #ff4d94; /* Rosa característico */
+            color: #ff4d94;
             font-size: 2.2em;
             margin-top: 0;
             margin-bottom: 25px;
             text-shadow: 2px 2px 0px #ffe6ea;
         }
 
-        /* Estilo da Tabela */
         table {
             width: 100%;
             border-collapse: collapse;
             overflow: hidden;
-            border-radius: 15px; /* Arredonda a tabela */
-            box-shadow: 0 0 0 2px #ffe6ea; /* Borda sutil na tabela toda */
+            border-radius: 15px;
+            box-shadow: 0 0 0 2px #ffe6ea;
         }
 
-        /* Cabeçalho da Tabela */
         th {
-            background-color: #ff66a3; /* Rosa escuro/choque */
+            background-color: #ff66a3;
             color: white;
             padding: 18px;
             text-align: left;
@@ -63,29 +58,47 @@
             border-bottom: 3px solid #ff4d94;
         }
 
-        /* Células da Tabela */
         td {
             padding: 15px 18px;
-            border-bottom: 2px dashed #ffb3c6; /* Linha pontilhada fofa entre alunos */
+            border-bottom: 2px dashed #ffb3c6;
             color: #666;
             font-weight: 600;
+            vertical-align: middle;
         }
 
-        /* Linhas da Tabela */
         tbody tr {
             background-color: #fff9fb;
             transition: background-color 0.3s ease, transform 0.2s ease;
         }
 
-        /* Efeito ao passar o mouse por cima (Hover) */
         tbody tr:hover {
-            background-color: #ffe6ea; /* Fica um rosa mais escurinho */
-            transform: scale(1.01); /* Dá um leve zoom */
+            background-color: #ffe6ea;
+            transform: scale(1.01);
         }
 
-        /* Remove a linha pontilhada do último aluno */
         tbody tr:last-child td {
             border-bottom: none;
+        }
+
+        /* --- ESTILO DO BOTÃO DE EXCLUIR --- */
+        .btn-excluir {
+            background-color: #ff99cc;
+            color: white;
+            padding: 8px 15px;
+            text-decoration: none;
+            border-radius: 15px;
+            font-weight: bold;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+            display: inline-block;
+            border: 2px solid transparent;
+        }
+
+        .btn-excluir:hover {
+            background-color: #ff4d94;
+            color: white;
+            transform: scale(1.1);
+            box-shadow: 0 4px 10px rgba(255, 77, 148, 0.4);
         }
     </style>
 </head>
@@ -94,21 +107,36 @@
     <div class="hello-kitty-container">
         <h1>🎀 Lista de Alunos 🌸</h1>
         
+        <div data-th-if="${mensagemSucesso != null}" style="text-align: center; color: #ff4d94; background-color: #ffe6ea; padding: 10px; border-radius: 15px; border: 2px dashed #ff4d94; margin-bottom: 20px; font-weight: bold;">
+            <span data-th-text="${mensagemSucesso}"></span>
+        </div>
+
         <table>
             <thead>
                 <tr>
                     <th>Nome</th>
                     <th>Email</th>
-                </tr>
+                    <th>Ações</th> </tr>
             </thead>
 
             <tbody>
                 <tr data-th-each="aluno: ${alunos}">
                     <td data-th-text="${aluno.nome}"></td>
                     <td data-th-text="${aluno.email}"></td>
+                    <td>
+                        <a data-th-href="@{/aluno/excluir/{id}(id=${aluno.id})}" 
+                           class="btn-excluir" 
+                           onclick="return confirm('Tem certeza que deseja excluir este aluno fofo? 🥺');">
+                           Excluir 🗑️
+                        </a>
+                    </td>
                 </tr>
             </tbody>
         </table>
+        
+        <div style="text-align: center; margin-top: 25px;">
+            <a href="/aluno/cadastro" style="color: #ff66a3; text-decoration: none; font-weight: bold;">+ Cadastrar novo aluno</a>
+        </div>
     </div>
 
 </body>
