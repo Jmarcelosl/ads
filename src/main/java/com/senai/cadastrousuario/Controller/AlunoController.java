@@ -57,11 +57,11 @@ public class AlunoController {
         Aluno alunoLogado = dao.findByEmailAndSenha(email, senha);
 
         if (alunoLogado != null) {
-            // Se encontrou (login correto), redireciona para a rota da lista! ✨
+            // Se encontrou (login correto), redireciona para a rota da lista!
             return "redirect:/aluno/lista";
         } else {
             // Se não encontrou (login errado), volta para a tela de login e manda uma
-            // mensagem de erro 😿
+            // mensagem de erro
             model.addAttribute("erro", "Email ou senha incorretos!");
             return "login";
         }
