@@ -28,7 +28,7 @@ public class AlunoController {
     public String novoAluno(Aluno aluno) {
         dao.save(aluno);
         // Após salvar, redireciona o usuário para a tela de login
-        return "redirect:/login";
+        return "redirect:/aluno/login";
     }
 
     @GetMapping("/aluno/lista")
@@ -39,13 +39,13 @@ public class AlunoController {
         return mv;
     }
 
-    @GetMapping("/login")
+    @GetMapping("/aluno/login")
     public String telaLogin() {
         return "login";
     }
 
     // 2. Recebe os dados do formulário para validar
-    @PostMapping("/login")
+    @PostMapping("/aluno/login")
     public String fazerLogin(@RequestParam String email, @RequestParam String senha, Model model) {
         // Busca no banco de dados se existe um aluno com esse email e senha
         Aluno alunoLogado = dao.findByEmailAndSenha(email, senha);
