@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estoque de Produtos 🎀</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #ffe6ea; background-image: radial-gradient(#ffb3c6 2px, transparent 2px);
+            background-size: 30px 30px; color: #5a5a5a; display: flex;
+            justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 20px;
+        }
+
+        .hello-kitty-container {
+            background-color: #ffffff; border: 4px solid #ff99cc; border-radius: 25px;
+            box-shadow: 0 10px 20px rgba(255, 153, 204, 0.4); padding: 40px; width: 100%; max-width: 900px;
+        }
+
+        h1 { text-align: center; color: #ff4d94; margin-bottom: 25px; text-shadow: 2px 2px 0px #ffe6ea; }
+
+        table { width: 100%; border-collapse: collapse; border-radius: 15px; overflow: hidden; box-shadow: 0 0 0 2px #ffe6ea; }
+        
+        th { background-color: #ff66a3; color: white; padding: 15px; text-align: center; border-bottom: 3px solid #ff4d94; }
+        td { padding: 15px; border-bottom: 2px dashed #ffb3c6; text-align: center; font-weight: 600; vertical-align: middle; }
+        
+        tbody tr { background-color: #fff9fb; transition: 0.3s; }
+        tbody tr:hover { background-color: #ffe6ea; transform: scale(1.01); }
+        tbody tr:last-child td { border-bottom: none; }
+
+        /* --- BOTÕES DA TABELA --- */
+        .btn-acao {
+            padding: 5px 10px; text-decoration: none; border-radius: 10px;
+            font-weight: bold; font-size: 1.1em; transition: 0.2s; display: inline-block; margin: 0 3px;
+        }
+
+        .btn-mais { background-color: #99e6b3; color: #006622; }
+        .btn-mais:hover { background-color: #66cc8a; transform: translateY(-2px); }
+
+        .btn-menos { background-color: #ffd480; color: #b37700; }
+        .btn-menos:hover { background-color: #ffaa00; transform: translateY(-2px); }
+
+        .btn-excluir { background-color: #ff99cc; color: white; font-size: 0.9em; padding: 8px 12px; }
+        .btn-excluir:hover { background-color: #ff4d94; color: white; transform: translateY(-2px); }
+
+        .badge-estoque { background-color: #ffffff; border: 2px solid #ff99cc; padding: 5px 15px; border-radius: 15px; color: #ff4d94; font-size: 1.1em;}
+    </style>
+</head>
+<body>
+
+    <div class="hello-kitty-container">
+        <h1>🎀 Gestão de Produtos 📦</h1>
+        
+        <div data-th-if="${mensagemSucesso != null}" style="text-align: center; color: #ff4d94; background-color: #ffe6ea; padding: 10px; border-radius: 15px; border: 2px dashed #ff4d94; margin-bottom: 20px; font-weight: bold;">
+            <span data-th-text="${mensagemSucesso}"></span>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: left;">Nome do Produto</th>
+                    <th>Preço</th>
+                    <th>Estoque</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr data-th-each="produto: ${produtos}">
+                    <td style="text-align: left;" data-th-text="${produto.nome}"></td>
+                    
+                    <td data-th-text="${'€ ' + produto.preco}"></td>
+                    
+                    <td>
+                        <a data-th-href="@{/produto/estoque/diminuir/{id}(id=${produto.id})}" class="btn-acao btn-menos" title="Diminuir">-</a>
+                        
+                        <span class="badge-estoque" data-th-text="${produto.estoque}"></span>
+                        
+                        <a data-th-href="@{/produto/estoque/aumentar/{id}(id=${produto.id})}" class="btn-acao btn-mais" title="Aumentar">+</a>
+                    </td>
+
+                    <td>
+                        <a data-th-href="@{/produto/excluir/{id}(id=${produto.id})}" class="btn-acao btn-excluir" 
+                           onclick="return confirm('Deseja mesmo excluir este produto? 🥺');">Excluir 🗑️</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div style="text-align: center; margin-top: 25px;">
+            <a href="/produto/cadastro" style="color: #ff66a3; text-decoration: none; font-weight: bold; font-size: 1.1em;">+ Registar Novo Produto 💖</a>
+        </div>
+    </div>
+
+</body>
+</html>
