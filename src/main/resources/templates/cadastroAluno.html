@@ -109,25 +109,29 @@
         <h1>🎀 Cadastro Aluno 🌸</h1>
 
         <form method="post" action="/aluno/cadastro">
+
+            <div>
+                <input type="hidden" name="id" th:value="${aluno?.id}">
+            </div>
             
             <div class="mb-3">
                 <label for="nome" class="form-label">Nome:</label>
-                <input id="nome" name="nome" type="text" class="form-control" placeholder="ex: Pedro a Rocha" required>
+                <input id="nome" name="nome" type="text" class="form-control" placeholder="ex: Pedro a Rocha" required th:value="${aluno?.nome}">
             </div>
 
             <div class="mb-3">
                 <label for="cpf" class="form-label">CPF:</label>
-                <input id="cpf" name="cpf" type="text" class="form-control" placeholder="000.000.000-00" required>
+                <input id="cpf" name="cpf" type="text" class="form-control" placeholder="000.000.000-00" required th:value="${aluno?.cpf}">
             </div>
 
             <div class="mb-3">
                 <label for="email" class="form-label">Email:</label>
-                <input id="email" name="email" type="email" class="form-control" placeholder="ex: pedro@pedromail.com" required>
+                <input id="email" name="email" type="email" class="form-control" placeholder="ex: pedro@pedromail.com" required th:value="${aluno?.email}">
             </div>
 
             <div class="mb-4">
                 <label for="senha" class="form-label">Senha:</label>
-                <input id="senha" name="senha" type="password" class="form-control" placeholder="ex: @#Senha_Forte556" required>
+                <input id="senha" name="senha" type="password" class="form-control" placeholder="ex: @#Senha_Forte556" required th:value="${aluno?.senha}">
             </div>
 
             <button type="submit" class="btn-salvar">Salvar ✨</button>

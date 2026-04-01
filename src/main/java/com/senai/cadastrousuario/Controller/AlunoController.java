@@ -79,4 +79,13 @@ public class AlunoController {
         // Recarrega a página de lista de alunos
         return "redirect:/aluno/lista";
     }
+
+    @GetMapping("/aluno/editar/{id}")
+    public ModelAndView editar(@PathVariable("id") int id) {
+        ModelAndView mv = new ModelAndView("cadastroAluno");
+        Aluno aluno = dao.findById(id).get();
+        mv.addObject("aluno", aluno);
+        return mv;
+    }
+
 }

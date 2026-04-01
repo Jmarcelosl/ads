@@ -129,6 +129,10 @@
                            onclick="return confirm('Tem certeza que deseja excluir este aluno fofo? 🥺');">
                            Excluir 🗑️
                         </a>
+                        <a data-th-href="@{/aluno/editar/{id}(id=${aluno.id})}" 
+                           class="btn-excluir" >
+                           Editar ✏️
+                        </a>
                     </td>
                 </tr>
             </tbody>
