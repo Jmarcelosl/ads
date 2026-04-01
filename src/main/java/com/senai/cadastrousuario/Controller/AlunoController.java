@@ -29,12 +29,8 @@ public class AlunoController {
     @PostMapping("/aluno/cadastro")
     public String novoAluno(Aluno aluno, RedirectAttributes attributes) {
         dao.save(aluno);
-
-        // Mensagem fofa de sucesso
-        attributes.addFlashAttribute("mensagemSucesso", "Aluno cadastrado com sucesso! 🌸✨");
-
-        // Redireciona de volta para a própria tela de cadastro
-        return "redirect:/aluno/cadastro";
+        attributes.addFlashAttribute("mensagemSucesso", "Aluno salvo com sucesso! 🌸✨");
+        return "redirect:/aluno/lista";
     }
 
     @GetMapping("/aluno/lista")
